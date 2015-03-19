@@ -14,7 +14,7 @@ Suggest to create an automatic task to do this every day at 1am:
 crontab -e
 0 1 * * * cd /Users/your_user/Documents/seene-backup; ./seene-backup.sh your_seene_nick >seene-backup.log 2>&1
 ``` 
-## Prerequisity
+## Prerequisite
 jq binary in your path, http://stedolan.github.io/jq/
 ## Disclaimer
 Tested on my Mac.
