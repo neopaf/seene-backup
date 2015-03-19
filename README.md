@@ -1,13 +1,20 @@
 ## About
 http://seene.co/ auto-backup
 ## Usage
-`./seene-backup.sh your_user_nick`
+`./seene-backup.sh your_seene_nick`
 
 Creates folder with current date and all your seenes.
 
 Each seene is stored in a folder named 
 
 `<captured_at> <caption> (#hashtags, if any)`
+## Automation
+
+```
+crontab -e
+0 1 * * * cd /Users/your_user/Documents/seene-backup; ./seene-backup.sh your_seene_nick >seene-backup.log 2>&1
+``` 
+Suggest to create a cronjob
 ## Prerequisity
 jq binary in your path, http://stedolan.github.io/jq/
 ## Disclaimer
