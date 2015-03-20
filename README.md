@@ -3,9 +3,9 @@ http://seene.co/ auto-backup
 ## Usage
 `./seene-backup.sh your_seene_nick`
 
-Creates folder with current date and all your seenes.
+Creates 'backup' folder with all your seenes.
 
-Each seene is stored in a folder named 
+Each seene is stored in a subfolder named 
 
 `<captured_at> <caption> (#hashtags, if any)`
 ## Automation
@@ -34,27 +34,25 @@ To Creators of Seene app.
 To jq author.
 ##Sample output
 ```
-macMini:seene-backup paf$ ./seene-backup.sh paf
-+ user=paf
-++ date +%Y-%m-%d
-+ date=2015-03-20
-++ curl -s http://seene.co/api/seene/-/users/@paf
-++ jq .id
-+ id=411418
-+ curl -s 'http://seene.co/api/seene/-/users/411418/scenes?count=10000'
-+ cat scenes.json
-+ jq -c -r '.scenes[] | .captured_at+" "+.caption+if .links|length>0 then " ("+([.links | .[] | .target] | join(" "))+")" else "" end + "\t" + .poster_url + "\t" + .model_url'
-+ cat scenes.xls
-+ IFS='	'
-+ read -r title poster_url model_url
-+ echo '2015-03-17T06:27:34Z Much as I hate food seenes..'
+rualpe-ws:seene-backup paf$ ./seene-backup.sh paf
+Resolving name to id
+Getting index
+Converting index to seenes.xls
+Downloading
+2015-03-20T07:33:30Z "Nice" #parking. Same spot (#parking)
+######################################################################## 100,0%
+######################################################################## 100,0%
 2015-03-17T06:27:34Z Much as I hate food seenes..
-+ curl -sR --create-dirs https://d2qkfprjkxv2r7.cloudfront.net/uploads/scene/poster/33da7053-a0f8-4146-9e65-aeaf4deba60e/poster.jpg -o '2015-03-20/2015-03-17T06:27:34Z Much as I hate food seenes../poster.jpg'
-+ curl -sR --create-dirs https://d3lftec466i2s1.cloudfront.net/uploads/scene/model/33da7053-a0f8-4146-9e65-aeaf4deba60e/scene.oemodel -o '2015-03-20/2015-03-17T06:27:34Z Much as I hate food seenes../scene.oemodel'
+######################################################################## 100,0%
+##################################################                        70,7%^C
 ```
 
 ##Result files
 ```
--rw-r--r--+ 1 paf  staff  796914 17 мар 09:27 ./2015-03-20/2015-03-17T06:27:34Z Much as I hate food seenes../poster.jpg
--rw-r--r--+ 1 paf  staff  230444 17 мар 09:27 ./2015-03-20/2015-03-17T06:27:34Z Much as I hate food seenes../scene.oemodel
+rualpe-ws:seene-backup paf$ find backup 
+...
+backup/2015-03-20T07:33:30Z "Nice" #parking. Same spot (#parking)
+backup/2015-03-20T07:33:30Z "Nice" #parking. Same spot (#parking)/poster.jpg
+backup/2015-03-20T07:33:30Z "Nice" #parking. Same spot (#parking)/scene.oemodel
+rualpe-ws:seene-backup paf$ 
 ```
