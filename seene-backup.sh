@@ -1,7 +1,8 @@
 #!/bin/bash -x
 # http://seene.co backuper
-# Author: Alexaander Petrossian (PAF) <alexander.petrossian+seene.backup@gmail.com>
-# Repo: https://github.com/neopaf
+# Usage: ./seene-backup.sh your_seene_nick
+# Author: Alexander Petrossian (PAF) <alexander.petrossian+seene.backup@gmail.com>
+# Repo: https://github.com/neopaf/seene-backup
 
 user=$1
 date=$(date +%Y-%m-%d)
