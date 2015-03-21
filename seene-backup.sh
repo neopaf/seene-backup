@@ -10,8 +10,9 @@ folder=$user
 echo "Resolving name to id"
 id=$(curl -s http://seene.co/api/seene/-/users/@$user|jq .id)
 
-echo "Getting index"
-curl -# http://seene.co/api/seene/-/users/$id/scenes?count=500 -o "$folder/index.json"
+last=500
+echo "Getting index of last $last seenes"
+curl -# "http://seene.co/api/seene/-/users/$id/scenes?count=$last" -o "$folder/index.json"
 
 echo "Converting index to seenes.xls"
 cat "$folder/index.json"|sed 's/\\n/ /g'| jq -c -r '.scenes[] | .captured_at+" "+.caption+if .links|length>0 then " ("+([.links | .[] | .target] | join(" "))+")" else "" end + "\t" + .poster_url + "\t" + .model_url'>"$folder/scenes.xls"
@@ -25,7 +26,7 @@ function download {
 	curl --progress-bar --continue-at - --create-dirs $url -o "$file"
 }
 
-echo "Downloading"
+echo "Downloading last $last seenes (not ALL)"
 cat "$folder/scenes.xls"|while read -r title poster_url model_url
 do
 	echo "$title"
