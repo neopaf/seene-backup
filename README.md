@@ -3,7 +3,7 @@ http://seene.co/ auto-backup
 ## Usage
 `./seene-backup.sh your_seene_nick`
 
-Creates 'backup' folder with all your seenes.
+Creates 'your_seene_nick' folder with all of your seenes. Images and depth maps.
 
 Each seene is stored in a subfolder named 
 
@@ -12,7 +12,8 @@ Each seene is stored in a subfolder named
 Suggest to create an automatic task to do this every day at 1am:
 ```
 crontab -e
-0 1 * * * cd /Users/your_user/Documents/seene-backup; ./seene-backup.sh your_seene_nick >seene-backup.log 2>&1
+0 1 * * * cd /Users/your_user/Documents/seene-backup; ./seene-backup.sh your_self_seene_nick >seene-backup-self.log 2>&1
+0 1 * * * cd /Users/your_user/Documents/seene-backup; ./seene-backup.sh your_wife_seene_nick >seene-backup-wife.log 2>&1
 ``` 
 ## Prerequisite
 jq binary in your path, http://stedolan.github.io/jq/
@@ -49,10 +50,10 @@ Downloading
 
 ##Result files
 ```
-rualpe-ws:seene-backup paf$ find backup 
+rualpe-ws:seene-backup paf$ find paf
 ...
-backup/2015-03-20T07:33:30Z "Nice" #parking. Same spot (#parking)
-backup/2015-03-20T07:33:30Z "Nice" #parking. Same spot (#parking)/poster.jpg
-backup/2015-03-20T07:33:30Z "Nice" #parking. Same spot (#parking)/scene.oemodel
+paf/2015-03-20T07:33:30Z "Nice" #parking. Same spot (#parking)
+paf/2015-03-20T07:33:30Z "Nice" #parking. Same spot (#parking)/poster.jpg
+paf/2015-03-20T07:33:30Z "Nice" #parking. Same spot (#parking)/scene.oemodel
 rualpe-ws:seene-backup paf$ 
 ```
