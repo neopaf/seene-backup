@@ -3,7 +3,8 @@ http://seene.co/ auto-backup
 ## Usage
 `./seene-backup.sh your_seene_nick`
 
-Creates 'your_seene_nick' folder with all of your seenes. Images and depth maps.
+Creates 'your_seene_nick' folder with last 500 of your seenes. Images and depth maps.
+(if you need more, try to change limit in script, but it might not work. I'm already thinking of a better way)
 
 Each seene is stored in a subfolder named 
 

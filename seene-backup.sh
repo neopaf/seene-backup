@@ -11,7 +11,7 @@ echo "Resolving name to id"
 id=$(curl -s http://seene.co/api/seene/-/users/@$user|jq .id)
 
 echo "Getting index"
-#curl -s http://seene.co/api/seene/-/users/$id/scenes?count=10000 > scenes.json
+curl -s http://seene.co/api/seene/-/users/$id/scenes?count=500 > scenes.json
 
 echo "Converting index to seenes.xls"
 cat scenes.json|sed 's/\\n/ /g'| jq -c -r '.scenes[] | .captured_at+" "+.caption+if .links|length>0 then " ("+([.links | .[] | .target] | join(" "))+")" else "" end + "\t" + .poster_url + "\t" + .model_url'>scenes.xls
