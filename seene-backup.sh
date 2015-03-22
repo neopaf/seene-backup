@@ -12,7 +12,7 @@ id=$(curl -s http://seene.co/api/seene/-/users/@$user|jq .id)
 
 last=500
 echo "Getting index of last $last seenes"
-curl -# "http://seene.co/api/seene/-/users/$id/scenes?count=$last" -o "$folder/index.json"
+curl -# --create-dirs "http://seene.co/api/seene/-/users/$id/scenes?count=$last" -o "$folder/index.json"
 
 echo "Converting index to seenes.xls"
 cat "$folder/index.json"|sed 's/\\n/ /g'| jq -c -r '.scenes[] | .captured_at+" "+.caption+if .links|length>0 then " ("+([.links | .[] | .target] | join(" "))+")" else "" end + "\t" + .poster_url + "\t" + .model_url'>"$folder/scenes.xls"
