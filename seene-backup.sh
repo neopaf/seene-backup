@@ -5,6 +5,12 @@
 # Repo: https://github.com/neopaf/seene-backup
 
 user=$1
+if [ -z "$user" ]
+then
+	echo "Usage: $0 your_seen_nick"
+	exit 1
+fi
+
 folder=$user
 
 echo "Resolving name to id"
@@ -30,6 +36,7 @@ echo "Downloading last $last seenes (not ALL)"
 cat "$folder/scenes.xls"|while read -r title poster_url model_url
 do
 	echo "$title"
+	title=$(echo "$title"|sed 's/\//~/g')
 	download "$poster_url" "$folder/$title/poster.jpg"
 	download "$model_url" "$folder/$title/scene.oemodel"
 done
