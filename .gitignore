@@ -1,5 +1,6 @@
 auth.sh
 *.json
+*.xls
 z
 .DS_Store
 paf.private
