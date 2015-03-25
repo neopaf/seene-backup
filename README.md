@@ -16,6 +16,14 @@ crontab -e
 0 1 * * * cd /Users/your_user/Documents/seene-backup; ./seene-backup.sh your_self_seene_nick >seene-backup-self.log 2>&1
 0 1 * * * cd /Users/your_user/Documents/seene-backup; ./seene-backup.sh your_wife_seene_nick >seene-backup-wife.log 2>&1
 ``` 
+## Privates
+
+Authorization part is not clear yet. Contact me if you need this.
+```
+. auth.sh #not included
+./seene-backup-private.sh your_seene_nick
+```
+
 ## Prerequisite
 jq binary in your path, http://stedolan.github.io/jq/
 ## Disclaimer
