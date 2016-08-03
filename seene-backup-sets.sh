@@ -18,8 +18,7 @@ mkdir -p $folder
 echo "Getting album lists"
 curl -s "https://seene.co/u/$user/sets/">/tmp/sets.html
 grep bootstrap /tmp/sets.html|sed 's/[)];$//'|sed 's/.*bootstrap[(]//'>$folder/sets.json
-#cat $user/sets.json|jq '.resources.user_albums.data|.[]|"\(.id)\t\(if(.description)then .title+" ("+.description+")" else .title end)"' -r>$folder/sets.xls
-cat $user/sets.json|jq '.resources.user_albums.data|.[]|[.id, if(.description)then .title+" ("+.description+")" else .title end]|@tsv' -r|tr '/' '-' >$folder/sets.xls
+cat $user/sets.json|jq '.resources.user_albums.data|.[]|[.id, if(.description)then .title+" ("+.description+")" else .title end]|@tsv' -r|tr '/' '-'|sed 's/\\/~/g' >$folder/sets.xls
 IFS="	"
 cat "$folder/sets.xls"|while read -r id title
 do
