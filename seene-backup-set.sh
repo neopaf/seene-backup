@@ -14,12 +14,10 @@ then
 	exit 1
 fi
 
-folder=$user
-
 #https://seene.co/api/seene/-/albums/112/scenes?count=200
 
 echo "$id $user $set_title"
-last=500
+last=2000
 echo "Getting index of last $last seenes"
 folder="$user/$set_title"
 curl -# --create-dirs "https://seene.co/api/seene/-/albums/$id/scenes?count=$last" -o "$folder/index.json"
